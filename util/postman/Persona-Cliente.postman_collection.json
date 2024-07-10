@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "c576213c-14b4-4878-accc-7481927cea7e",
+		"name": "Persona-Cliente",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24213660",
+		"_collection_link": "https://interstellar-firefly-216235.postman.co/workspace/SOFKA~46a9d028-aa26-4703-997b-63fb59383a83/collection/24213660-c576213c-14b4-4878-accc-7481927cea7e?action=share&source=collection_link&creator=24213660"
+	},
+	"item": [
+		{
+			"name": "Crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"nombre\": \"Sebastiann\",\r\n  \"genero\": \"Masculino\",\r\n  \"edad\": 24,\r\n  \"identificacion\": \"1724022437\",\r\n  \"direccion\": \"Vicentina\",\r\n  \"telefono\": \"0979317536\",\r\n  \"contrasena\": \"123456\",\r\n  \"estado\": \"true\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Ricardoo\",\r\n    \"genero\": \"Masculino\",\r\n    \"edad\": 29,\r\n    \"identificacion\": \"1723949291\",\r\n    \"direccion\": \"Floresta\",\r\n    \"telefono\": \"0976777536\",\r\n    \"contrasena\": \"123456\",\r\n    \"estado\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/actualizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"actualizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarPorId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/api/v1/clientes/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"v1",
+						"clientes",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

@@ -1,0 +1,80 @@
+version: '3'
+
+services:
+  ### Base de datos para cliente_personas
+  postgres_db:
+    container_name: postgres_db
+    image: postgres:14
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: cliente
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5431:5431
+    expose:
+      - 5431
+    command: -p 5431
+    volumes:
+      - pgdata1:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  ### Base de datos para cuenta_movimientos
+  postgres_db_new:
+    container_name: postgres_db_new
+    image: postgres:14
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: movimientos
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - 5432:5432
+    expose:
+      - 5432
+    command: -p 5432
+    volumes:
+      - pgdata2:/var/lib/postgresql/data
+    networks:
+      - my_network
+
+  ### Servicio cliente_personas
+  cliente_personas:
+    container_name: cliente-personas
+    build:
+      context: ./microservicio-cliente-persona
+    ports:
+      - 8080:8080
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres_db:5431/cliente
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      - postgres_db
+    networks:
+      - my_network
+
+  ### Servicio cuenta_movimientos
+  cuenta_movimientos:
+    container_name: cuenta-movimientos
+    build:
+      context: ./microservicio-cuenta-movimientos
+    ports:
+      - 8081:8081
+    environment:
+      - DATABASE_URL=jdbc:postgresql://postgres_db_new:5432/movimientos
+      - DATABASE_USERNAME=postgres
+      - DATABASE_PASSWORD=postgres
+    depends_on:
+      - postgres_db_new
+    networks:
+      - my_network
+
+volumes:
+  pgdata1: {}
+  pgdata2: {}
+
+networks:
+  my_network:
+    external: true

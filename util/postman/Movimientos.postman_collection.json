@@ -1,0 +1,169 @@
+{
+	"info": {
+		"_postman_id": "09195ea5-2ce7-4b44-a11e-5c34a2de1ee7",
+		"name": "Movimientos",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24213660",
+		"_collection_link": "https://interstellar-firefly-216235.postman.co/workspace/SOFKA~46a9d028-aa26-4703-997b-63fb59383a83/collection/24213660-09195ea5-2ce7-4b44-a11e-5c34a2de1ee7?action=share&source=collection_link&creator=24213660"
+	},
+	"item": [
+		{
+			"name": "CrearMovimiento",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"tipoMovimiento\": \"RETIRO\",\r\n  \"valor\": 900.0,\r\n  \"numeroCuenta\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/movimientos/crear",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"movimientos",
+						"crear"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/movimientos/listar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"movimientos",
+						"listar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/movimientos/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"movimientos",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": 2,\r\n    \"fecha\": \"2024-05-15\",\r\n    \"tipoMovimiento\": \"RETIRO\",\r\n    \"valor\": 500.0,\r\n    \"saldo\": 400.0,\r\n    \"numeroCuenta\": \"12345998300\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/movimientos/actualizar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"movimientos",
+						"actualizar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarPorId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/cuentas/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"cuentas",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"numeroCuenta\": \"12345977320\",\r\n  \"tipoCuenta\": \"Ruc\",\r\n  \"saldoInicial\": 800,\r\n  \"estado\": \"true\",\r\n  \"identificacionCliente\": \"3\"\r\n  \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/cuentas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"cuentas"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
