@@ -15,7 +15,7 @@ public class CuentaApiImpl implements CuentaApi {
 
     private final RestTemplate restTemplate;
 
-    private String URI = "http://localhost:8080/api/v1/clientes";
+    private String URI = "http://cliente-personas:8080/api/v1/clientes";
 
     @Override
     public ClienteDTO getCientePorId(String idCliente) {
