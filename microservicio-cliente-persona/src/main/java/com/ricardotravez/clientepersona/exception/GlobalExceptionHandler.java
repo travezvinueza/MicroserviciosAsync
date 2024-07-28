@@ -12,10 +12,10 @@ import java.time.LocalDateTime;
 public class GlobalExceptionHandler {
     private final String RECURSO_NO_ENCONTRADO = "003";
 
-    @ExceptionHandler(RecursoNoEncontradoException.class)
-    public ResponseEntity<RespuestaError> handleRecursoNoEncontradoException(RecursoNoEncontradoException exception, WebRequest webRequest) {
-        RespuestaError respuestaError = new RespuestaError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), RECURSO_NO_ENCONTRADO);
-        return new ResponseEntity<>(respuestaError, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ResponseError> handleRecursoNoEncontradoException(ResourceNotFoundException exception, WebRequest webRequest) {
+        ResponseError responseError = new ResponseError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), RECURSO_NO_ENCONTRADO);
+        return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
     }
 
 }

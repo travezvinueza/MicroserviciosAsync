@@ -17,27 +17,27 @@ public class GlobalExceptionHandler {
     private final String CLIENTE_NO_ENCONTRADO = "004";
 
     @ExceptionHandler(SaldoInsuficienteException.class)
-    public ResponseEntity<RespuestaError> handleSaldoInsuficienteException(SaldoInsuficienteException exception, WebRequest webRequest) {
-        RespuestaError respuestaError = new RespuestaError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), SALDO_NO_DISPONIBLE);
-        return new ResponseEntity<>(respuestaError, HttpStatus.BAD_REQUEST);
+    public ResponseEntity<ResponseError> handleSaldoInsuficienteException(SaldoInsuficienteException exception, WebRequest webRequest) {
+        ResponseError responseError = new ResponseError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), SALDO_NO_DISPONIBLE);
+        return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(CuentaNoEncontradaException.class)
-    public ResponseEntity<RespuestaError> handleCuentaNoEncontradaException(CuentaNoEncontradaException exception, WebRequest webRequest) {
-        RespuestaError respuestaError = new RespuestaError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), CUENTA_NO_ENCONTRADA);
-        return new ResponseEntity<>(respuestaError, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(AccountNotFoundException.class)
+    public ResponseEntity<ResponseError> handleCuentaNoEncontradaException(AccountNotFoundException exception, WebRequest webRequest) {
+        ResponseError responseError = new ResponseError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), CUENTA_NO_ENCONTRADA);
+        return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(RecursoNoEncontradoException.class)
-    public ResponseEntity<RespuestaError> handleRecursoNoEncontradoException(RecursoNoEncontradoException exception, WebRequest webRequest) {
-        RespuestaError respuestaError = new RespuestaError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), RECURSO_NO_ENCONTRADO);
-        return new ResponseEntity<>(respuestaError, HttpStatus.BAD_REQUEST);
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ResponseError> handleRecursoNoEncontradoException(ResourceNotFoundException exception, WebRequest webRequest) {
+        ResponseError responseError = new ResponseError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), RECURSO_NO_ENCONTRADO);
+        return new ResponseEntity<>(responseError, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(ClienteNoEncontradoException.class)
-    public ResponseEntity<RespuestaError> handleClienteNoEncontradoException(ClienteNoEncontradoException exception, WebRequest webRequest) {
-        RespuestaError respuestaError = new RespuestaError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), CLIENTE_NO_ENCONTRADO);
-        return new ResponseEntity<>(respuestaError, HttpStatus.NOT_FOUND);
+    @ExceptionHandler(ClientNotFoundException.class)
+    public ResponseEntity<ResponseError> handleClienteNoEncontradoException(ClientNotFoundException exception, WebRequest webRequest) {
+        ResponseError responseError = new ResponseError(LocalDateTime.now(), exception.getMessage(), webRequest.getDescription(false), CLIENTE_NO_ENCONTRADO);
+        return new ResponseEntity<>(responseError, HttpStatus.NOT_FOUND);
     }
 
 }

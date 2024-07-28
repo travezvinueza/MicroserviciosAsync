@@ -14,7 +14,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"nombre\": \"Sebastiann\",\r\n  \"genero\": \"Masculino\",\r\n  \"edad\": 24,\r\n  \"identificacion\": \"1724022437\",\r\n  \"direccion\": \"Vicentina\",\r\n  \"telefono\": \"0979317536\",\r\n  \"contrasena\": \"123456\",\r\n  \"estado\": \"true\"\r\n}",
+					"raw": "{\r\n  \"name\": \"Sebastian\",\r\n  \"genderPerson\": \"MASCULINO\",\r\n  \"age\": 24,\r\n  \"identificationNumber\": \"1724022437\",\r\n  \"address\": \"Vicentina\",\r\n  \"phone\": \"0979317536\",\r\n  \"password\": \"123456\",\r\n  \"state\": \"true\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -22,7 +22,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/crear",
+					"raw": "http://localhost:8080/api/v1/clients/create",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -31,8 +31,8 @@
 					"path": [
 						"api",
 						"v1",
-						"clientes",
-						"crear"
+						"clients",
+						"create"
 					]
 				}
 			},
@@ -44,7 +44,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/listar",
+					"raw": "http://localhost:8080/api/v1/clients/list",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -53,8 +53,8 @@
 					"path": [
 						"api",
 						"v1",
-						"clientes",
-						"listar"
+						"clients",
+						"list"
 					]
 				}
 			},
@@ -66,7 +66,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/1",
+					"raw": "http://localhost:8080/api/v1/clients/1",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -75,7 +75,7 @@
 					"path": [
 						"api",
 						"v1",
-						"clientes",
+						"clients",
 						"1"
 					]
 				}
@@ -89,7 +89,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"id\": 1,\r\n    \"nombre\": \"Ricardoo\",\r\n    \"genero\": \"Masculino\",\r\n    \"edad\": 29,\r\n    \"identificacion\": \"1723949291\",\r\n    \"direccion\": \"Floresta\",\r\n    \"telefono\": \"0976777536\",\r\n    \"contrasena\": \"123456\",\r\n    \"estado\": true\r\n}",
+					"raw": "{\r\n    \"id\": 1,\r\n    \"name\": \"Ricardoo\",\r\n    \"genderPerson\": \"MASCULINO\",\r\n    \"age\": 29,\r\n    \"identificationNumber\": \"1723949291\",\r\n    \"address\": \"Floresta\",\r\n    \"phone\": \"0976777536\",\r\n    \"password\": \"123456\",\r\n    \"state\": true\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,7 +97,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/actualizar",
+					"raw": "http://localhost:8080/api/v1/clients/update",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -106,8 +106,8 @@
 					"path": [
 						"api",
 						"v1",
-						"clientes",
-						"actualizar"
+						"clients",
+						"update"
 					]
 				}
 			},
@@ -119,7 +119,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8080/api/v1/clientes/2",
+					"raw": "http://localhost:8080/api/v1/clients/2",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -128,7 +128,7 @@
 					"path": [
 						"api",
 						"v1",
-						"clientes",
+						"clients",
 						"2"
 					]
 				}

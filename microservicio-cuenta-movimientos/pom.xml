@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.ricardotravez</groupId>
-	<artifactId>microservicio-cuenta-movimientos</artifactId>
+	<artifactId>microservicio-account-motions</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>microservicio-cuenta-movimientos</name>
-	<description>Microservicio para manejar cuentas y movimientos</description>
+	<name>microservicio-account-motions</name>
+	<description>Microservicio para manejar accounts y motions</description>
 	<properties>
 		<java.version>17</java.version>
 	</properties>
