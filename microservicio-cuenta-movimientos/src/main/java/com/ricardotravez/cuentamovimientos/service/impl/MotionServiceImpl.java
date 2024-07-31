@@ -20,17 +20,16 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class MotionServiceImpl implements MotionService {
     private final MotionRepository motionRepository;
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;
 
     @Override
-    public MotionDTO crear(MotionDTO motionDTO) {
+    public MotionDTO create(MotionDTO motionDTO) {
         // Busca la cuenta por el número de cuenta en el repositorio. Si no se encuentra, lanza una excepción.
         Account account = accountRepository.findByAccountNumber(motionDTO.getAccountNumber()).orElseThrow(
                 () -> new AccountNotFoundException(MessageError.CUENTA_NO_ENCONTRADA.toString()));
@@ -68,13 +67,13 @@ public class MotionServiceImpl implements MotionService {
     }
 
     @Override
-    public List<MotionDTO> listar() {
+    public List<MotionDTO> list() {
         return motionRepository.findAll().stream().map(
                 (motion)-> modelMapper.map(motion, MotionDTO.class)).collect(Collectors.toList());
     }
 
     @Override
-    public MotionDTO obtenerPorId(Long id) {
+    public MotionDTO getById(Long id) {
         Motion motion = motionRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(MessageError.RECURSO_NO_ENCONTRADO.toString())
         );
@@ -82,8 +81,8 @@ public class MotionServiceImpl implements MotionService {
     }
 
     @Override
-    public MotionDTO actualizar(MotionDTO motionDTO) {
-        Motion motionDB = modelMapper.map(obtenerPorId(motionDTO.getId()), Motion.class);
+    public MotionDTO update(MotionDTO motionDTO) {
+        Motion motionDB = modelMapper.map(getById(motionDTO.getId()), Motion.class);
 
         motionDB.setDate(motionDTO.getDate());
         motionDB.setTransactionType(motionDTO.getTransactionType());
@@ -94,7 +93,7 @@ public class MotionServiceImpl implements MotionService {
     }
 
     @Override
-    public void eliminarPorId(Long id) {
+    public void deleteById(Long id) {
         motionRepository.findById(id).orElseThrow(
                 ()-> new ResourceNotFoundException(MessageError.RECURSO_NO_ENCONTRADO.toString())
         );

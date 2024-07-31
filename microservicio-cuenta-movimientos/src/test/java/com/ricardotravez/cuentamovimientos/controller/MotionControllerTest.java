@@ -20,56 +20,56 @@ import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 class MotionControllerTest {
+
     @InjectMocks
     private MotionController motionController;
     @Mock
     private MotionService motionService;
 
-
     @Test
-    void crear() {
+    void create() {
         MotionDTO movimientoCreado = new MotionDTO();
         movimientoCreado.setId(1L);
 
-        when(motionService.crear(any(MotionDTO.class))).thenReturn(movimientoCreado);
+        when(motionService.create(any(MotionDTO.class))).thenReturn(movimientoCreado);
         ResponseEntity<MotionDTO> responseEntity = motionController.crear(new MotionDTO());
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
         assertEquals(movimientoCreado, responseEntity.getBody());
     }
 
     @Test
-    void listar() {
+    void list() {
         List<MotionDTO> movimientos = new ArrayList<>();
 
-        when(motionService.listar()).thenReturn(movimientos);
+        when(motionService.list()).thenReturn(movimientos);
         ResponseEntity<List<MotionDTO>> responseEntity = motionController.listar();
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(movimientos, responseEntity.getBody());
     }
 
     @Test
-    void obtenerPorId() {
+    void getById() {
         MotionDTO movimientoExistente = new MotionDTO();
         movimientoExistente.setId(1L);
 
-        when(motionService.obtenerPorId(1L)).thenReturn(movimientoExistente);
+        when(motionService.getById(1L)).thenReturn(movimientoExistente);
         ResponseEntity<MotionDTO> responseEntity = motionController.obtenerPorId(1L);
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(movimientoExistente, responseEntity.getBody());
     }
 
     @Test
-    void eliminarPorId() {
+    void deleteById() {
         motionController.eliminarPorId(1L);
-        verify(motionService).eliminarPorId(1L);
+        verify(motionService).deleteById(1L);
     }
 
     @Test
-    void actualizar() {
+    void update() {
         MotionDTO movimientoActualizado = new MotionDTO();
         movimientoActualizado.setId(1L);
 
-        when(motionService.actualizar(any(MotionDTO.class))).thenReturn(movimientoActualizado);
+        when(motionService.update(any(MotionDTO.class))).thenReturn(movimientoActualizado);
         ResponseEntity<MotionDTO> responseEntity = motionController.actualizar(new MotionDTO());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(movimientoActualizado, responseEntity.getBody());

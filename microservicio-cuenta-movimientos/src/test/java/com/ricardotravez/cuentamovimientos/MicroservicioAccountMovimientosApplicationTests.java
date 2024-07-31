@@ -36,12 +36,12 @@ class MicroservicioAccountMovimientosApplicationTests {
 
     @Test
     @DisplayName("Test 1: No Deberia Crear Movimiento Si Numero de Cuenta No Existe")
-    public void testIntegrationMovimientos() throws Exception {
+    public void testIntegrationMotions() throws Exception {
         Long id = Math.abs(new Random().nextLong());
-        String idCliente = faker.idNumber().valid();
-        MotionDTO motionDTO = new MotionDTO(id, LocalDateTime.now(), getRandomTransactionType(), 50.0, 200.0, faker.finance().iban(), idCliente);
+        String idClient = faker.idNumber().valid();
+        MotionDTO motionDTO = new MotionDTO(id, LocalDateTime.now(), getRandomTransactionType(), 50.0, 200.0, faker.finance().iban(), idClient);
 
-        mockMvc.perform(MockMvcRequestBuilders.post("/v1/movimientos/create").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(motionDTO))).andExpect(status().isBadRequest());
+        mockMvc.perform(MockMvcRequestBuilders.post("/v1/motions/create").contentType(MediaType.APPLICATION_JSON).content(objectMapper.writeValueAsString(motionDTO))).andExpect(status().isBadRequest());
     }
 
     private TransactionType getRandomTransactionType() {
@@ -51,8 +51,8 @@ class MicroservicioAccountMovimientosApplicationTests {
 
     @Test
     @DisplayName("Test 1: listar cuentas")
-    public void listaIntegrationCliente() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/v1/cuentas/list").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+    public void listIntegrationClient() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/v1/accounts/list").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
         List<AccountDTO> accountDTOS = objectMapper.readValue(response.getContentAsString(), new TypeReference<>() {
         });
@@ -67,8 +67,8 @@ class MicroservicioAccountMovimientosApplicationTests {
 
     @Test
     @DisplayName("Test 1: listar movimientos")
-    public void listaIntegrationMovimientos() throws Exception {
-        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/v1/movimientos/list").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
+    public void listIntegrationMotions() throws Exception {
+        MvcResult mvcResult = mockMvc.perform(MockMvcRequestBuilders.get("/v1/motions/list").contentType(MediaType.APPLICATION_JSON)).andExpect(status().isOk()).andReturn();
         MockHttpServletResponse response = mvcResult.getResponse();
         List<MotionDTO> motionDTOS = objectMapper.readValue(response.getContentAsString(), new TypeReference<>() {
         });

@@ -28,13 +28,12 @@ class AccountControllerTest {
     @Mock
     private AccountService accountService;
 
-
     @Test
-    void crear() {
+    void create() {
         AccountDTO cuentaCreada = new AccountDTO();
         cuentaCreada.setId(1L);
 
-        when(accountService.crear(any(AccountDTO.class))).thenReturn(cuentaCreada);
+        when(accountService.create(any(AccountDTO.class))).thenReturn(cuentaCreada);
         ResponseEntity<AccountDTO> responseEntity = accountController.crear(new AccountDTO());
 
         assertEquals(HttpStatus.CREATED, responseEntity.getStatusCode());
@@ -42,11 +41,11 @@ class AccountControllerTest {
     }
 
     @Test
-    void listar() {
+    void list() {
 
         List<AccountDTO> cuentas = new ArrayList<>();
 
-        when(accountService.listar()).thenReturn(cuentas);
+        when(accountService.list()).thenReturn(cuentas);
         ResponseEntity<List<AccountDTO>> responseEntity = accountController.listar();
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -54,11 +53,11 @@ class AccountControllerTest {
     }
 
     @Test
-    void obtenerPorId() {
+    void getById() {
         AccountDTO cuentaExistente = new AccountDTO();
         cuentaExistente.setId(1L);
 
-        when(accountService.obtenerPorId(1L)).thenReturn(cuentaExistente);
+        when(accountService.getById(1L)).thenReturn(cuentaExistente);
         ResponseEntity<AccountDTO> responseEntity = accountController.obtenerPorId(1L);
 
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
@@ -66,30 +65,30 @@ class AccountControllerTest {
     }
 
     @Test
-    void eliminarPorId() {
+    void deleteById() {
         accountController.eliminarPorId(1L);
-        verify(accountService).eliminarPorId(1L);
+        verify(accountService).deleteById(1L);
     }
 
     @Test
-    void actualizar() {
+    void update() {
         AccountDTO cuentaActualizada = new AccountDTO();
         cuentaActualizada.setId(1L);
 
-        when(accountService.actualizar(any(AccountDTO.class))).thenReturn(cuentaActualizada);
+        when(accountService.update(any(AccountDTO.class))).thenReturn(cuentaActualizada);
         ResponseEntity<AccountDTO> responseEntity = accountController.actualizar(new AccountDTO());
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(cuentaActualizada, responseEntity.getBody());
     }
 
     @Test
-    void getCuentaPorClienteId() {
+    void getAccountByClientId() {
         //Simulo
         List<AccountDTO> cuentasCliente = new ArrayList<>();
         // Mockear
         when(accountService.findByIdClient(anyString())).thenReturn(cuentasCliente);
         // Llamar al método del controlador
-        ResponseEntity<List<AccountDTO>> responseEntity = accountController.getCuentaPorClienteId("clienteId");
+        ResponseEntity<List<AccountDTO>> responseEntity = accountController.getCuentaPorClienteId("clientId");
         assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
         assertEquals(cuentasCliente, responseEntity.getBody());
     }

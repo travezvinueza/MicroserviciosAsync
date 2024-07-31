@@ -20,27 +20,27 @@ public class AccountController {
 
     @PostMapping("/create")
     public ResponseEntity<AccountDTO> crear(@RequestBody AccountDTO accountDTO){
-        return new ResponseEntity<>(accountService.crear(accountDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(accountService.create(accountDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<AccountDTO>> listar(){
-        return new ResponseEntity<>(accountService.listar(), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AccountDTO> obtenerPorId(@PathVariable Long id){
-        return new ResponseEntity<>(accountService.obtenerPorId(id), HttpStatus.OK);
+        return new ResponseEntity<>(accountService.getById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarPorId(@PathVariable Long id){
-        accountService.eliminarPorId(id);
+        accountService.deleteById(id);
     }
 
     @PutMapping("/update")
     public ResponseEntity <AccountDTO> actualizar(@RequestBody AccountDTO accountDTO){
-        return  new ResponseEntity<>(accountService.actualizar(accountDTO), HttpStatus.OK);
+        return  new ResponseEntity<>(accountService.update(accountDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getCuentaPorClienteId/{idClient}")

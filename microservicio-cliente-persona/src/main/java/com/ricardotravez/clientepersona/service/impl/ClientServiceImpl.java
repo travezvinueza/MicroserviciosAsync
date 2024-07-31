@@ -11,25 +11,21 @@ import com.ricardotravez.clientepersona.service.ClientService;
 import io.reactivex.rxjava3.core.Observable;
 import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
-
     private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
     private final ClientApi clientApi;
-
-    private static final Logger logger = LoggerFactory.getLogger(ClientServiceImpl.class);
 
     @Override
     public ClientDTO create(ClientDTO clientDTO) {
@@ -51,7 +47,7 @@ public class ClientServiceImpl implements ClientService {
                     // Obtiene las cuentas y movimientos de cada cliente de manera asíncrona
                     .flatMap(clientDTO -> this.obtenerCuentasMovimientosPorClienteIdAsync(clientDTO));
         } catch (Exception e) {
-            logger.error("Error obteniendo datos de cliente", e);
+            log.error("Error obteniendo datos de cliente", e);
             throw new ResourceNotFoundException("Error obteniendo datos de cliente " + e.getMessage());
         }
     }
@@ -66,16 +62,16 @@ public class ClientServiceImpl implements ClientService {
         // Crea un Observable para obtener las cuentas de un cliente de manera asíncrona
         Observable<List<AccountDTO>> cuentasObservable = Observable.fromCallable(() ->
                         clientApi.getCuentaPorClienteId(clientDTO.getId().toString()))
-                .subscribeOn(Schedulers.io()) // Schedulers IO -> reutiliza hilos existentes una vez que han terminado su tarea. - Ejecuta la llamada en un hilo de Input/Output
+                .subscribeOn(Schedulers.io()) // Ejecuta la llamada en un subproceso de I/O
                 .doOnNext(cuentas -> {
-                    logger.info("Cuentas obtenidas exitosamente para clienteId: " + clientDTO.getId());
+                    log.info("Cuentas obtenidas exitosamente para clienteId: " + clientDTO.getId());
                     clientDTO.setAccounts(cuentas); // Asigna las cuentas al ClienteDTO
                 })
                 .doOnError(error -> {
-                    logger.error("Error obteniendo cuentas para clienteId: " + clientDTO.getId(), error);// Logger para registrar mensajes de log
+                    log.error("Error obteniendo cuentas para clienteId: " + clientDTO.getId(), error);
                     clientDTO.setAccounts(Collections.emptyList()); // En caso de error, establece una lista vacía
                 })
-                .onErrorReturnItem(Collections.emptyList()); // En caso de error, devuelve una lista vacía
+                .onErrorReturnItem(Collections.emptyList());
 
         // Retorna el ClienteDTO con las cuentas asignadas
         return cuentasObservable.map(cuentas -> clientDTO);

@@ -29,7 +29,7 @@ class ClientControllerTest {
     private ClientService clientService;
 
     @Test
-    void crearCliente() {
+    void createClient() {
         when(clientService.create(any(ClientDTO.class)))
                 .thenAnswer(invocation -> {
                     ClientDTO clientDTOArgument = invocation.getArgument(0);
@@ -68,7 +68,7 @@ class ClientControllerTest {
     }
 
     @Test
-    void listarClientes() {
+    void listClients() {
         List<ClientDTO> clientes = new ArrayList<>();
         clientes.add(new ClientDTO(1L, "Cliente 1", GenderPerson.MASCULINO, 30, "ID1", "Dirección 1", LocalDate.now(), "123456789", "contraseña", true, new ArrayList<>()));
         clientes.add(new ClientDTO(2L, "Cliente 2", GenderPerson.FEMENINO, 25, "ID2", "Dirección 2", LocalDate.now(), "987654321", "contraseña2", true, new ArrayList<>()));
@@ -84,7 +84,7 @@ class ClientControllerTest {
     }
 
     @Test
-    void obtenerClientePorId() {
+    void getClientById() {
         ClientDTO clienteExistente = new ClientDTO(1L, "Cliente 1", GenderPerson.MASCULINO, 30, "ID1", "Dirección 1",LocalDate.now(), "123456789", "contraseña", true, new ArrayList<>());
 
         when(clientService.getById(1L)).thenReturn(clienteExistente);
@@ -94,13 +94,13 @@ class ClientControllerTest {
     }
 
     @Test
-    void eliminarClientePorId() {
+    void deleteClientById() {
         clientController.eliminarPorId(1L);
         verify(clientService).deleteById(1L);
     }
 
     @Test
-    void actualizarCliente() {
+    void updateClient() {
         ClientDTO clienteActualizado = new ClientDTO(1L, "Cliente Actualizado",  GenderPerson.FEMENINO, 35, "ID1", "Nueva Dirección", LocalDate.now(),"987654321", "nuevaContraseña", true,  new ArrayList<>());
 
         when(clientService.update(any(ClientDTO.class))).thenReturn(clienteActualizado);

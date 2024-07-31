@@ -17,8 +17,6 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -26,25 +24,22 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Slf4j
 @Service
 @RequiredArgsConstructor
-@Slf4j
 public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;
     private final AccountApi accountApi;
 
-    private static final Logger logger = LoggerFactory.getLogger(AccountServiceImpl.class);
-
     @Override
-    public AccountDTO crear(AccountDTO accountDTO) {
+    public AccountDTO create(AccountDTO accountDTO) {
         try {
             // Crea un Observable para obtener el cliente desde la API de manera asíncrona
             Observable<ClientDTO> clienteObservable = Observable.fromCallable(() ->
                             accountApi.getCientePorId(accountDTO.getIdClient()))
                     .subscribeOn(Schedulers.io()) // Ejecuta la llamada en un subproceso de I/O
-                    .doOnError(error -> logger.error("Error obteniendo cliente: ", error))
+                    .doOnError(error -> log.error("Error obteniendo cliente: ", error))
                     .onErrorReturnItem(new ClientDTO());
 
             // Bloquea hasta que se obtiene el cliente y continúa con la lógica de creación
@@ -64,7 +59,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<AccountDTO> listar() {
+    public List<AccountDTO> list() {
         return accountRepository.findAll().stream()
                 .map(cuenta -> {
                     AccountDTO accountDTO = modelMapper.map(cuenta, AccountDTO.class);
@@ -75,14 +70,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public AccountDTO obtenerPorId(Long id) {
+    public AccountDTO getById(Long id) {
         Account account = accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(MessageError.RECURSO_NO_ENCONTRADO.toString()));
         return modelMapper.map(account, AccountDTO.class);
     }
 
     @Override
-    public AccountDTO actualizar(AccountDTO accountDTO) {
-        AccountDTO accountDTODB = obtenerPorId(accountDTO.getId());
+    public AccountDTO update(AccountDTO accountDTO) {
+        AccountDTO accountDTODB = getById(accountDTO.getId());
 
         accountDTODB.setAccountNumber(accountDTO.getAccountNumber());
         accountDTODB.setDate(accountDTO.getDate());
@@ -96,7 +91,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public void eliminarPorId(Long id) {
+    public void deleteById(Long id) {
         accountRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException(MessageError.RECURSO_NO_ENCONTRADO.toString()));
         accountRepository.deleteById(id);
     }
@@ -126,7 +121,7 @@ public class AccountServiceImpl implements AccountService {
             Observable<ClientDTO> clienteObservable = Observable.fromCallable(() ->
                             accountApi.getCientePorId(idClient.toString()))
                     .subscribeOn(Schedulers.io()) // Ejecuta la llamada en un subproceso de I/O
-                    .doOnError(error -> logger.error("Error obteniendo cliente: ", error))
+                    .doOnError(error -> log.error("Error obteniendo cliente: ", error))
                     .onErrorReturnItem(new ClientDTO());
             // Bloquea hasta que se obtiene el cliente y continúa con la lógica
             ClientDTO clientDTO = clienteObservable.blockingFirst();

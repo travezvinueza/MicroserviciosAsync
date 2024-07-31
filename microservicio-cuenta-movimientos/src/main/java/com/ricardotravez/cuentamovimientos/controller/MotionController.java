@@ -17,27 +17,27 @@ public class MotionController {
 
     @PostMapping("/create")
     public ResponseEntity<MotionDTO> crear(@RequestBody MotionDTO motionDTO){
-        return new ResponseEntity<>(motionService.crear(motionDTO), HttpStatus.CREATED);
+        return new ResponseEntity<>(motionService.create(motionDTO), HttpStatus.CREATED);
     }
 
     @GetMapping("/list")
     public ResponseEntity<List<MotionDTO>> listar(){
-        return new ResponseEntity<>(motionService.listar(), HttpStatus.OK);
+        return new ResponseEntity<>(motionService.list(), HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<MotionDTO> obtenerPorId(@PathVariable Long id){
-        return new ResponseEntity<>(motionService.obtenerPorId(id), HttpStatus.OK);
+        return new ResponseEntity<>(motionService.getById(id), HttpStatus.OK);
     }
 
     @DeleteMapping("/{id}")
     public void eliminarPorId(@PathVariable Long id){
-        motionService.eliminarPorId(id);
+        motionService.deleteById(id);
     }
 
     @PutMapping("/update")
     public ResponseEntity <MotionDTO> actualizar(@RequestBody MotionDTO motionDTO){
-        return  new ResponseEntity<>(motionService.actualizar(motionDTO), HttpStatus.OK);
+        return  new ResponseEntity<>(motionService.update(motionDTO), HttpStatus.OK);
     }
 
     @GetMapping("/getMovimientosPorClienteId/{idClient}")

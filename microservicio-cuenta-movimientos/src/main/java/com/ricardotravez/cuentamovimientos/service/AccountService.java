@@ -8,11 +8,11 @@ import java.util.List;
 
 public interface AccountService {
 
-    AccountDTO crear(AccountDTO accountDTO);
-    List<AccountDTO> listar();
-    AccountDTO obtenerPorId(Long id);
-    AccountDTO actualizar(AccountDTO accountDTO);
-    void eliminarPorId(Long id);
+    AccountDTO create(AccountDTO accountDTO);
+    List<AccountDTO> list();
+    AccountDTO getById(Long id);
+    AccountDTO update(AccountDTO accountDTO);
+    void deleteById(Long id);
     List<AccountDTO> findByIdClient(String idClient);
 
 

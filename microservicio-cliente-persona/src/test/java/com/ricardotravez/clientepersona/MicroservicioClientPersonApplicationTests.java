@@ -31,8 +31,8 @@ class MicroservicioClientPersonApplicationTests {
 	private Faker faker = new Faker();
 
 	@Test
-	@DisplayName("Test 1: crear client")
-	public void crearCliente() throws Exception {
+	@DisplayName("Test 1: create client")
+	public void createClient() throws Exception {
 		ClientDTO clientDTO = new ClientDTO(
 				null,
 				faker.name().firstName(),
