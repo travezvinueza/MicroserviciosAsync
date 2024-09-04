@@ -4,9 +4,9 @@ Proyecto realizado bajo mvc con arquitetcura de microservicios para clientes y s
 
 ## Tecnologías Utilizadas
 
-- Spring Boot: Para la construcción y despliegue de microservicios.
-- RxJava: Para la comunicacion asincrona
-- Flyway: Para la creacion de tablas y carga de datos iniciales
+- Spring Boot: Para la construcción de microservicios.
+- RxJava: Para la comunicacion asincrona.
+- Flyway: Para la creacion de tablas y carga de datos iniciales.
 - PostgreSQL: Bases de datos relacionales para el almacenamiento de datos.
 - Docker: Para la contenerización y despliegue en cualquier entorno.
 - ModelMapper: Para mapear objetos de un modelo a otro.
