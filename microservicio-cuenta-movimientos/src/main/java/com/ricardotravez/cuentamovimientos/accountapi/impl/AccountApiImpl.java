@@ -14,13 +14,11 @@ import org.springframework.web.client.RestTemplate;
 public class AccountApiImpl implements AccountApi {
     private final RestTemplate restTemplate;
 
-    private String URI = "http://localhost:8080/api/v1/clients";
-
     @Override
     public ClientDTO getCientePorId(String idClient) {
         try {
-            String urlCliente = URI + "/" +idClient;
-            ResponseEntity<ClientDTO> response = restTemplate.exchange(urlCliente, HttpMethod.GET, null, ClientDTO.class);
+            String apiEndpoint  = "http://localhost:8080/api/v1/clients/" + idClient;
+            ResponseEntity<ClientDTO> response = restTemplate.exchange(apiEndpoint, HttpMethod.GET, null, ClientDTO.class);
             if(response.getStatusCode().value() == 200){
                 return response.getBody();
             }

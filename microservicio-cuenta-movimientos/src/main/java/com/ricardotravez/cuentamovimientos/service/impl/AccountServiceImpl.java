@@ -8,6 +8,7 @@ import com.ricardotravez.cuentamovimientos.dto.AccountReportDetailDTO;
 import com.ricardotravez.cuentamovimientos.dto.MotionDTO;
 import com.ricardotravez.cuentamovimientos.entity.Account;
 import com.ricardotravez.cuentamovimientos.entity.MessageError;
+import com.ricardotravez.cuentamovimientos.exception.AccountReportException;
 import com.ricardotravez.cuentamovimientos.exception.ClientNotFoundException;
 import com.ricardotravez.cuentamovimientos.exception.ResourceNotFoundException;
 import com.ricardotravez.cuentamovimientos.repository.AccountRepository;
@@ -23,7 +24,6 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Slf4j
 @Service
@@ -172,7 +172,7 @@ public class AccountServiceImpl implements AccountService {
         } catch (Exception e) {
             // Capturar cualquier otra excepción y registrarla antes de relanzarla
             log.error("Error al obtener el reporte de la cuenta: ", e);
-            throw new RuntimeException("Error al obtener el reporte de la cuenta: " + e.getMessage(), e);
+            throw new AccountReportException("Error al obtener el reporte de la cuenta: " + e.getMessage());
         }
     }
 

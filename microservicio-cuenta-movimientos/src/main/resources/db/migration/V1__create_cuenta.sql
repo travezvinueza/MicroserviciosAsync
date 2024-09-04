@@ -23,14 +23,14 @@ CREATE TABLE IF NOT EXISTS motions (
 
 -- Insertar datos en la tabla accounts
 INSERT INTO accounts (account_number, account_type, date, initial_balance, state, id_client) VALUES
-('123456', 'CORRIENTE', '2024-08-24 17:06:01.816', 1000.00, true, '1'),
-('234567', 'AHORROS', '2024-08-24 17:06:01.816', 2000.00, true, '2'),
-('345678', 'CORRIENTE', '2024-08-24 17:06:01.816', 3000.00, true, '3'),
-('456789', 'AHORROS', '2024-08-24 17:06:01.816', 4000.00, true, '4');
+('123456', 'CORRIENTE', '2024-09-04 17:06:01.816', 1000.00, true, '1'),
+('234567', 'AHORROS', '2024-09-04 17:06:01.816', 2000.00, true, '2'),
+('345678', 'CORRIENTE', '2024-09-04 17:06:01.816', 3000.00, true, '3'),
+('456789', 'AHORROS', '2024-09-04 17:06:01.816', 4000.00, true, '4');
 
 -- Insertar datos en la tabla motions
 INSERT INTO motions (date, transaction_type, valor, saldo, account_id, id_client) VALUES
-('2024-08-24 17:06:01.816', 'DEPOSITO', 500.00, 1500.00, 1, 1),
-('2024-08-24 17:06:01.816', 'RETIRO', 200.00, 1800.00, 2, 2),
-('2024-08-24 17:06:01.816', 'DEPOSITO', 1000.00, 4000.00, 3, 3),
-('2024-08-24 17:06:01.816', 'DEPOSITO', 500.00, 4500.00, 4, 4);
+('2024-09-04 20:06:01.816', 'DEPOSITO', 500.00, 1500.00, 1, 1),
+('2024-09-04 20:06:01.816', 'RETIRO', 200.00, 1800.00, 2, 2),
+('2024-09-04 20:06:01.816', 'DEPOSITO', 1000.00, 4000.00, 3, 3),
+('2024-09-04 20:06:01.816', 'DEPOSITO', 500.00, 4500.00, 4, 4);
