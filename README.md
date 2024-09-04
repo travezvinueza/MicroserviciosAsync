@@ -1,5 +1,4 @@
-
-# Arquitectura de Microservicios con RxJava 
+# Programación Reactiva con RxJava
 
 Proyecto realizado bajo mvc con arquitetcura de microservicios para clientes y sus movimientos! Este proyecto está desarrollado en Java utilizando Spring
 
