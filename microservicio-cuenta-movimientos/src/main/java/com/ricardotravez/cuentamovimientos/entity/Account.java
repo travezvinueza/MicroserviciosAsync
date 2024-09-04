@@ -1,0 +1,33 @@
+package com.ricardotravez.cuentamovimientos.entity;
+
+import com.ricardotravez.cuentamovimientos.entity.enums.AccountType;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import lombok.*;
+
+import java.time.LocalDateTime;
+import java.util.List;
+
+@Entity
+@Table(name = "accounts")
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+public class Account {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true)
+    private String accountNumber;
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    @Column(name = "account_type")
+    private AccountType accountType;
+    private LocalDateTime date = LocalDateTime.now();
+    private double initialBalance;
+    private boolean state;
+    private String idClient;
+    @OneToMany(mappedBy = "account", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Motion> motions;
+}

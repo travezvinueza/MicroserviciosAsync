@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="microservicio-client-persona" />
+        <module name="microservicio-account-motions" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="microservicio-cliente-persona" target="17" />
+      <module name="microservicio-cuenta-movimientos" target="17" />
+    </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="microservicio-account-motions" options="-parameters" />
+      <module name="microservicio-client-persona" options="-parameters" />
+      <module name="microservicio-cliente-persona" options="-parameters" />
+      <module name="microservicio-cuenta-movimientos" options="-parameters" />
+    </option>
+  </component>
+</project>
