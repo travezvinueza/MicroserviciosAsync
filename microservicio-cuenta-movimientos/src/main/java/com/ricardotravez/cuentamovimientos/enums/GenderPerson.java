@@ -1,4 +1,4 @@
-package com.ricardotravez.cuentamovimientos.entity.enums;
+package com.ricardotravez.cuentamovimientos.enums;
 
 public enum GenderPerson {
     MASCULINO,

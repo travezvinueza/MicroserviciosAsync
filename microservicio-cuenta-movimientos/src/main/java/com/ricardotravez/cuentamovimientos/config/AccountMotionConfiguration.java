@@ -14,6 +14,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @Configuration
 @OpenAPIDefinition(info = @Info(title = "API CUENTA-MOVIMIENTO", description = "Prueba Tecnica Microservicios", termsOfService = "www.programacion.com/terminos_y_condiciones", version = "1.0.0", contact = @Contact(name = "Ricardo Travez", url = "https://test-ejemplo.com", email = "travezvinueza@gmail.com"), license = @License(name = "Standard Software Use License for programador", url = "www.programacion.com/licence")))
 public class AccountMotionConfiguration implements WebMvcConfigurer {
+
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

@@ -2,9 +2,9 @@ package com.ricardotravez.cuentamovimientos.service.impl;
 
 import com.ricardotravez.cuentamovimientos.dto.MotionDTO;
 import com.ricardotravez.cuentamovimientos.entity.Account;
-import com.ricardotravez.cuentamovimientos.entity.MessageError;
+import com.ricardotravez.cuentamovimientos.dto.MessageError;
 import com.ricardotravez.cuentamovimientos.entity.Motion;
-import com.ricardotravez.cuentamovimientos.entity.enums.TransactionType;
+import com.ricardotravez.cuentamovimientos.enums.TransactionType;
 import com.ricardotravez.cuentamovimientos.exception.AccountNotFoundException;
 import com.ricardotravez.cuentamovimientos.exception.ResourceNotFoundException;
 import com.ricardotravez.cuentamovimientos.exception.SaldoInsuficienteException;

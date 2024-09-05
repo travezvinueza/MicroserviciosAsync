@@ -4,7 +4,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.ricardotravez.cuentamovimientos.dto.AccountDTO;
 import com.ricardotravez.cuentamovimientos.dto.MotionDTO;
-import com.ricardotravez.cuentamovimientos.entity.enums.TransactionType;
+import com.ricardotravez.cuentamovimientos.enums.TransactionType;
 import net.datafaker.Faker;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.DisplayName;

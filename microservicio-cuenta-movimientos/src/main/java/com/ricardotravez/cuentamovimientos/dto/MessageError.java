@@ -1,4 +1,4 @@
-package com.ricardotravez.cuentamovimientos.entity;
+package com.ricardotravez.cuentamovimientos.dto;
 
 public enum MessageError {
     SALDO_NO_DISPONIBLE,

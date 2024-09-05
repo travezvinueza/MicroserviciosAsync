@@ -1,6 +1,6 @@
 package com.ricardotravez.cuentamovimientos.entity;
 
-import com.ricardotravez.cuentamovimientos.entity.enums.TransactionType;
+import com.ricardotravez.cuentamovimientos.enums.TransactionType;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;

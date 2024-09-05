@@ -1,6 +1,6 @@
 package com.ricardotravez.cuentamovimientos.dto;
 
-import com.ricardotravez.cuentamovimientos.entity.enums.TransactionType;
+import com.ricardotravez.cuentamovimientos.enums.TransactionType;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,6 +1,6 @@
 package com.ricardotravez.cuentamovimientos.dto;
 
-import com.ricardotravez.cuentamovimientos.entity.enums.GenderPerson;
+import com.ricardotravez.cuentamovimientos.enums.GenderPerson;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

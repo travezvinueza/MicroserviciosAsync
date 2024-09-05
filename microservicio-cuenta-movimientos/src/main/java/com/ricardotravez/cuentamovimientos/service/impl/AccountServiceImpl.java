@@ -7,7 +7,7 @@ import com.ricardotravez.cuentamovimientos.dto.AccountReport;
 import com.ricardotravez.cuentamovimientos.dto.AccountReportDetailDTO;
 import com.ricardotravez.cuentamovimientos.dto.MotionDTO;
 import com.ricardotravez.cuentamovimientos.entity.Account;
-import com.ricardotravez.cuentamovimientos.entity.MessageError;
+import com.ricardotravez.cuentamovimientos.dto.MessageError;
 import com.ricardotravez.cuentamovimientos.exception.AccountReportException;
 import com.ricardotravez.cuentamovimientos.exception.ClientNotFoundException;
 import com.ricardotravez.cuentamovimientos.exception.ResourceNotFoundException;
