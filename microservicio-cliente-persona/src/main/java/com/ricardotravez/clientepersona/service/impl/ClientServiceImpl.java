@@ -4,7 +4,7 @@ import com.ricardotravez.clientepersona.clientApi.ClientApi;
 import com.ricardotravez.clientepersona.dto.ClientDTO;
 import com.ricardotravez.clientepersona.dto.AccountDTO;
 import com.ricardotravez.clientepersona.entity.Client;
-import com.ricardotravez.clientepersona.entity.MessageError;
+import com.ricardotravez.clientepersona.dto.MessageError;
 import com.ricardotravez.clientepersona.exception.ResourceNotFoundException;
 import com.ricardotravez.clientepersona.repository.ClientRepository;
 import com.ricardotravez.clientepersona.service.ClientService;

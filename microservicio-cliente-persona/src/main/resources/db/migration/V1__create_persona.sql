@@ -21,10 +21,10 @@ CREATE TABLE clients (
 
 -- Insertar datos en la tabla personas
 INSERT INTO persons (name, gender_person, date, age, identification_number, address, phone) VALUES
-('Sebastián', 'MASCULINO', '2024-08-23', 24, '1724022437', 'Vicentina', '0979317536'),
-('Jose Lema', 'MASCULINO', '2024-08-23', 28, '1756384920', 'La Carolina', '0987654321'),
-('Maria Montalvo', 'FEMENINO', '2024-08-23', 35, '1702947583', 'Amazonas y NNUU ', '0998765432'),
-('Juan Osorio', 'FEMENINO', '2024-08-23', 32, '1719483726', '13 junio y Equinoccial', '0965432187');
+('Sebastián', 'MASCULINO', '2024-09-04', 24, '1724022437', 'Vicentina', '0979317536'),
+('Jose Lema', 'MASCULINO', '2024-09-04', 28, '1756384920', 'La Carolina', '0987654321'),
+('Maria Montalvo', 'FEMENINO', '2024-09-04', 35, '1702947583', 'Amazonas y NNUU ', '0998765432'),
+('Juan Osorio', 'FEMENINO', '2024-09-04', 32, '1719483726', '13 junio y Equinoccial', '0965432187');
 
 -- Insertar datos en la tabla clientes
 INSERT INTO clients (id, password, state) VALUES

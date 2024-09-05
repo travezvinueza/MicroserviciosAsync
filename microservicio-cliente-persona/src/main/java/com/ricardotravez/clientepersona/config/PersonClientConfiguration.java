@@ -35,5 +35,4 @@ public class PersonClientConfiguration implements WebMvcConfigurer {
 
     }
 
-
 }

@@ -26,6 +26,7 @@ public class Person {
     private GenderPerson genderPerson;
     private LocalDate date;
     private int age;
+    @Column(name = "identification_number")
     private String identificationNumber;
     private String address;
     private String phone;

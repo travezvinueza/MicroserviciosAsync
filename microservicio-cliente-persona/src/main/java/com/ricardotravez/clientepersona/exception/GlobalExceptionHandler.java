@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
-    private final String RECURSO_NO_ENCONTRADO = "003";
+    private static final String RECURSO_NO_ENCONTRADO = "003";
 
     @ExceptionHandler(ResourceNotFoundException.class)
     public ResponseEntity<ResponseError> handleRecursoNoEncontradoException(ResourceNotFoundException exception, WebRequest webRequest) {

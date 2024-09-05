@@ -64,7 +64,7 @@ class ClientControllerTest {
                 )
         );
 
-        Assertions.assertEquals(clienteDTO.getBody().getId(), 1L);
+        Assertions.assertEquals(1L, clienteDTO.getBody().getId());
     }
 
     @Test
@@ -90,7 +90,7 @@ class ClientControllerTest {
         when(clientService.getById(1L)).thenReturn(clienteExistente);
         ResponseEntity<ClientDTO> responseEntity = clientController.obtenerPorId(1L);
         Assertions.assertEquals(responseEntity.getBody(), clienteExistente);
-        Assertions.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
     @Test
@@ -106,7 +106,7 @@ class ClientControllerTest {
         when(clientService.update(any(ClientDTO.class))).thenReturn(clienteActualizado);
         ResponseEntity<ClientDTO> responseEntity = clientController.actualizar(clienteActualizado);
         Assertions.assertEquals(responseEntity.getBody(), clienteActualizado);
-        Assertions.assertEquals(responseEntity.getStatusCode(), HttpStatus.OK);
+        Assertions.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
     }
 
 }
