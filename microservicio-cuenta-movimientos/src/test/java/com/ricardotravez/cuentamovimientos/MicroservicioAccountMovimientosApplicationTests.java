@@ -32,7 +32,7 @@ class MicroservicioAccountMovimientosApplicationTests {
     private MockMvc mockMvc;
     @Autowired
     private ObjectMapper objectMapper;
-    private Faker faker = new Faker();
+    private final Faker faker = new Faker();
 
     @Test
     @DisplayName("Test 1: No Deberia Crear Movimiento Si Numero de Cuenta No Existe")
