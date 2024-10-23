@@ -1,0 +1,219 @@
+{
+	"info": {
+		"_postman_id": "06a2bff7-1d49-4f06-bdc4-5a2fe64d8bfa",
+		"name": "Cuentas",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24213660",
+		"_collection_link": "https://interstellar-firefly-216235.postman.co/workspace/Cuenta~6c268100-305a-4f1a-bdba-4f196040cd3d/collection/24213660-06a2bff7-1d49-4f06-bdc4-5a2fe64d8bfa?action=share&source=collection_link&creator=24213660"
+	},
+	"item": [
+		{
+			"name": "ObtenerPorId",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Crear",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"accountNumber\": \"222222\",\r\n  \"accountType\": \"AHORROS\",\r\n  \"initialBalance\": 800,\r\n  \"state\": true,\r\n  \"idClient\": \"2\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"create"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Listar",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/list",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"list"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Actualizar",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"id\": 0,\r\n  \"accountNumber\": \"222222\",\r\n  \"accountType\": \"AHORROS\",\r\n  \"initialBalance\": 800,\r\n  \"state\": true,\r\n  \"idClient\": \"2\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/update",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "EliminarPorId",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getCuentaPorIdCliente",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/getCuentaPorClienteId/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"getCuentaPorClienteId",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "reporte-cuenta",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8081/api/v1/accounts/report-account?startDate=2024-08-25&endDate=2024-08-26&idClient=2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"api",
+						"v1",
+						"accounts",
+						"report-account"
+					],
+					"query": [
+						{
+							"key": "startDate",
+							"value": "2024-08-25"
+						},
+						{
+							"key": "endDate",
+							"value": "2024-08-26"
+						},
+						{
+							"key": "idClient",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
