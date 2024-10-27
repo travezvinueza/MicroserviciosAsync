@@ -17,7 +17,7 @@ public class AccountApiImpl implements AccountApi {
     @Override
     public ClientDTO getCientePorId(String idClient) {
         try {
-            String apiEndpoint  = "http://cliente-personas:8080/api/v1/clients/" + idClient;
+            String apiEndpoint  = "http://localhost:8080/api/v1/clients/" + idClient;
             ResponseEntity<ClientDTO> response = restTemplate.exchange(apiEndpoint, HttpMethod.GET, null, ClientDTO.class);
             if(response.getStatusCode().value() == 200){
                 return response.getBody();

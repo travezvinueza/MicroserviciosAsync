@@ -43,7 +43,7 @@
   </component>
   <component name="DBNavigator.Project.FileConnectionMappingManager">
     <mapping file-url="file://$PROJECT_DIR$/microservicio-cuenta-movimientos/src/main/resources/db/migration/V1__create_cuenta.sql" connection-id="55b90a64-7e06-4af4-b43f-3c6418df51d1" session-id="MAIN" current-schema="movimientos" />
-    <mapping file-url="file://$PROJECT_DIR$/microservicio-cliente-persona/src/main/resources/db/migration/V1__create_persona.sql" connection-id="dd5c81cf-bf36-4721-b3cd-18190cd60291" session-id="MAIN" current-schema="cliente_personas" />
+    <mapping file-url="file://$PROJECT_DIR$/microservicio-cliente-persona/src/main/resources/db/migration/V1__create_persona.sql" connection-id="dd5c81cf-bf36-4721-b3cd-18190cd60291" session-id="MAIN" current-schema="clientes" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />

@@ -6,7 +6,7 @@ import lombok.*;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Motion {
+public class MotionDTO {
     private TransactionType transactionType;
     private double valor;
     private double saldo;

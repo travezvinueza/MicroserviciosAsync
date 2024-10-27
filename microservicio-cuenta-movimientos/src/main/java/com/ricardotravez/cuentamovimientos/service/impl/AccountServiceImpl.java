@@ -24,6 +24,8 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
+import java.util.UUID;
 
 @Slf4j
 @Service
@@ -32,6 +34,7 @@ public class AccountServiceImpl implements AccountService {
     private final AccountRepository accountRepository;
     private final ModelMapper modelMapper;
     private final AccountApi accountApi;
+    private final Random random = new Random();
 
     @Override
     public AccountDTO create(AccountDTO accountDTO) {
@@ -43,20 +46,28 @@ public class AccountServiceImpl implements AccountService {
                     .doOnError(error -> log.error("Error obteniendo cliente: ", error))
                     .onErrorReturnItem(new ClientDTO());
 
-            // Bloquea hasta que se obtiene el cliente y continúa con la lógica de creación
+            // Bloquea hasta que se obtiene el cliente y continuará con la lógica
             ClientDTO clientDTO = clienteObservable.blockingFirst();
 
             if (clientDTO.getId() == null) {
-                throw new ClientNotFoundException("");
+                throw new ClientNotFoundException("Error cliente no existe no se puede crear la cuenta");
             }
 
             Account account = modelMapper.map(accountDTO, Account.class);
             account.setDate(LocalDateTime.now());
+            account.setAccountNumber(generateCodigoUnico());
             // Guarda la entidad de cuenta en el repositorio y la mapea de vuelta a DTO
             return modelMapper.map(accountRepository.save(account), AccountDTO.class);
         } catch (Exception e) {
             throw new ClientNotFoundException("Error: " + e.getMessage());
         }
+    }
+
+    private String generateCodigoUnico() {
+        int min = 100000;
+        int max = 999999;
+        int accountNumber = random.nextInt((max - min) + 1) + min;
+        return String.valueOf(accountNumber);
     }
 
     @Override
@@ -78,15 +89,14 @@ public class AccountServiceImpl implements AccountService {
 
     @Override
     public AccountDTO update(AccountDTO accountDTO) {
-        AccountDTO accountDTO1 = getById(accountDTO.getId());
+        AccountDTO existingAccount  = getById(accountDTO.getId());
 
-        accountDTO1.setAccountNumber(accountDTO.getAccountNumber());
-        accountDTO1.setDate(accountDTO.getDate());
-        accountDTO1.setAccountType(accountDTO.getAccountType());
-        accountDTO1.setInitialBalance(accountDTO.getInitialBalance());
-        accountDTO1.setState(accountDTO.isState());
+        existingAccount .setDate(LocalDateTime.now());
+        existingAccount .setAccountType(accountDTO.getAccountType());
+        existingAccount .setInitialBalance(accountDTO.getInitialBalance());
+        existingAccount .setState(accountDTO.isState());
 
-        Account account = modelMapper.map(accountDTO1, Account.class);
+        Account account = modelMapper.map(existingAccount , Account.class);
 
         return modelMapper.map(accountRepository.save(account), AccountDTO.class);
     }
@@ -127,9 +137,8 @@ public class AccountServiceImpl implements AccountService {
                     .subscribeOn(Schedulers.io()) //Asegura que las llamadas a la API se realicen en un hilo adecuado para operaciones de entrada/salida.
                     .doOnError(error -> log.error("Error obteniendo cliente: ", error))
                     .onErrorReturnItem(new ClientDTO());
-            // Bloquea hasta que se obtiene el cliente y continúa con la lógica
-            ClientDTO clientDTO = clienteObservable.blockingFirst();
 
+            ClientDTO clientDTO = clienteObservable.blockingFirst();
             if (clientDTO.getId() == null) {
                 throw new ClientNotFoundException("Error cliente no existe no se puede generar estado de cuentas");
             }
@@ -170,7 +179,6 @@ public class AccountServiceImpl implements AccountService {
         } catch (ResourceNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
-            // Capturar cualquier otra excepción y registrarla antes de relanzarla
             log.error("Error al obtener el reporte de la cuenta: ", e);
             throw new AccountReportException("Error al obtener el reporte de la cuenta: " + e.getMessage());
         }

@@ -14,5 +14,5 @@ public class AccountDTO {
     private AccountType accountType;
     private double initialBalance;
     private boolean state;
-    private List<Motion> motions;
+    private List<MotionDTO> motions;
 }
