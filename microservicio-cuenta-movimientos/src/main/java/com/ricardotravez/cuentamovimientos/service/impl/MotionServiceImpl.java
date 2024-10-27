@@ -49,18 +49,14 @@ public class MotionServiceImpl implements MotionService {
         log.info("Cuenta: {}", account);
 
         if (motion.getTransactionType() == TransactionType.DEPOSITO) {
-            // Suma el valor del movimiento al saldo actual.
             motion.setSaldo(saldoActual + motion.getValor());
         } else if (motion.getTransactionType() == TransactionType.RETIRO) {
-            // Verifica si el saldo actual es menor que el valor del retiro.
             if (saldoActual < motion.getValor()) {
                 throw new SaldoInsuficienteException(MessageError.SALDO_NO_DISPONIBLE.toString());
             } else {
-                // Resta el valor del movimiento del saldo actual.
                 motion.setSaldo(saldoActual - motion.getValor());
             }
         }
-
         // Guarda el movimiento en el repositorio y mapea la entidad de movimiento a DTO.
         Motion savedMotion = motionRepository.save(motion);
         return modelMapper.map(savedMotion, MotionDTO.class);
