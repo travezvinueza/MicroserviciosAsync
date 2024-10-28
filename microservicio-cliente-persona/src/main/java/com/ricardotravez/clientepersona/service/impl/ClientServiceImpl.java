@@ -41,7 +41,6 @@ public class ClientServiceImpl implements ClientService {
     @Override
     public Observable<ClientDTO> list() {
         try {
-            // Apartir de un Observable creo una lista de todos los clientes del repositorio
             return Observable.fromIterable(clientRepository.findAll())
                     .map(client -> modelMapper.map(client, ClientDTO.class))
                     // Con flatMap obtengo las cuentas y movimientos de cada cliente de manera asíncrona
@@ -59,17 +58,16 @@ public class ClientServiceImpl implements ClientService {
     }
 
     public Observable<ClientDTO> obtenerCuentasMovimientosPorClienteIdAsync(ClientDTO clientDTO){
-        // Crea un Observable para obtener las cuentas de un cliente de manera asíncrona
         Observable<List<AccountDTO>> cuentasObservable = Observable.fromCallable(() ->
                         clientApi.getCuentaPorClienteId(clientDTO.getId().toString()))
                 .subscribeOn(Schedulers.io()) //Asegura que las llamadas a la API se realicen en un hilo adecuado para operaciones de entrada/salida.
                 .doOnNext(cuentas -> {
                     log.info("Cuentas obtenidas exitosamente para clienteId: " + clientDTO.getId());
-                    clientDTO.setAccounts(cuentas); // Asigna las cuentas al ClienteDTO
+                    clientDTO.setAccounts(cuentas);
                 })
                 .doOnError(error -> {
                     log.error("Error obteniendo cuentas para clienteId: " + clientDTO.getId(), error);
-                    clientDTO.setAccounts(Collections.emptyList()); // En caso de error, establece una lista vacía
+                    clientDTO.setAccounts(Collections.emptyList());
                 })
                 .onErrorReturnItem(Collections.emptyList());
 
