@@ -25,7 +25,6 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-import java.util.UUID;
 
 @Slf4j
 @Service
@@ -54,17 +53,18 @@ public class AccountServiceImpl implements AccountService {
 
             Account account = modelMapper.map(accountDTO, Account.class);
             account.setDate(LocalDateTime.now());
-            account.setAccountNumber(generateCodigoUnico());
+            account.setAccountNumber(generateAccountNumber());
+            // Guarda la entidad de cuenta en el repositorio y l
             return modelMapper.map(accountRepository.save(account), AccountDTO.class);
         } catch (Exception e) {
             throw new ClientNotFoundException("Error: " + e.getMessage());
         }
     }
 
-    private String generateCodigoUnico() {
-        int min = 100000;
-        int max = 999999;
-        int accountNumber = random.nextInt((max - min) + 1) + min;
+    private String generateAccountNumber() {
+        long min = 1000000000L;
+        long max = 9999999999L;
+        long accountNumber = min + (long) (random.nextDouble() * (max - min + 1));
         return String.valueOf(accountNumber);
     }
 

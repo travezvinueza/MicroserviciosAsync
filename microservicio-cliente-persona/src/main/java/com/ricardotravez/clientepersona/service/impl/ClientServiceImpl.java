@@ -13,6 +13,7 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.modelmapper.ModelMapper;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -23,6 +24,7 @@ import java.util.Optional;
 @Service
 @RequiredArgsConstructor
 public class ClientServiceImpl implements ClientService {
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final ClientRepository clientRepository;
     private final ModelMapper modelMapper;
     private final ClientApi clientApi;
@@ -35,6 +37,7 @@ public class ClientServiceImpl implements ClientService {
         }
         clientDTO.setDate(LocalDate.now());
         Client client = modelMapper.map(clientDTO, Client.class);
+        client.setPassword(bCryptPasswordEncoder.encode(clientDTO.getPassword()));
         return modelMapper.map(clientRepository.save(client), ClientDTO.class);
     }
 
@@ -81,11 +84,12 @@ public class ClientServiceImpl implements ClientService {
         Client client = modelMapper.map(getById(clientDTO.getId()), Client.class);
 
         client.setName(clientDTO.getName());
-        client.setDate(client.getDate());
+        client.setDate(LocalDate.now());
         client.setGenderPerson(clientDTO.getGenderPerson());
         client.setAge(clientDTO.getAge());
         client.setAddress(clientDTO.getAddress());
         client.setPhone(clientDTO.getPhone());
+        client.setPassword(bCryptPasswordEncoder.encode(clientDTO.getPassword()));
         client.setState(clientDTO.isState());
         return modelMapper.map(clientRepository.save(client), ClientDTO.class);
     }

@@ -28,7 +28,7 @@ INSERT INTO persons (name, gender_person, date, age, identification_number, addr
 
 -- Insertar datos en la tabla clientes
 INSERT INTO clients (id, password, state) VALUES
-((SELECT id FROM persons WHERE identification_number = '1724022437'), '123456', true),
-((SELECT id FROM persons WHERE identification_number = '1756384920'), 'abcdef', true),
-((SELECT id FROM persons WHERE identification_number = '1702947583'), 'password', true),
-((SELECT id FROM persons WHERE identification_number = '1719483726'), 'mypassword', true);
+((SELECT id FROM persons WHERE identification_number = '1724022437'), '$2a$12$yBbYR9h7WCL4lGGLQBuxMeGKE1qyIKtJ.37nGEltGHozl7kiFVZT.', true),
+((SELECT id FROM persons WHERE identification_number = '1756384920'), '$2a$12$iueJQu0H.odxzAydvNheQ.2a1XQNprJd6Ds4uC1ULh5LeGyeVLoju', true),
+((SELECT id FROM persons WHERE identification_number = '1702947583'), '$2a$12$fItExTIb9l2wfWI3n/ze6OKcC8r5rZHIkzj0rLchnIMqT/VcIVq4a', true),
+((SELECT id FROM persons WHERE identification_number = '1719483726'), '$2a$12$/Ce6eXZvPQJ/7gym3QK.kudi0YU4VCvk3jfHTgLT/aECXt/4UnaMi', true);
