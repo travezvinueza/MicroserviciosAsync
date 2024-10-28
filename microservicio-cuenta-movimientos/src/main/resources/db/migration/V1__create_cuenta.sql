@@ -23,10 +23,10 @@ CREATE TABLE IF NOT EXISTS motions (
 
 -- Insertar datos en la tabla accounts
 INSERT INTO accounts (account_number, account_type, date, initial_balance, state, id_client) VALUES
-('222222', 'CORRIENTE', '2024-10-22 15:06:01.816', 1000.00, true, '1'),
-('333333', 'AHORROS', '2024-10-22 15:06:01.816', 2000.00, true, '2'),
-('444444', 'CORRIENTE', '2024-10-22 15:06:01.816', 3000.00, true, '3'),
-('555555', 'AHORROS', '2024-10-22 15:06:01.816', 4000.00, true, '4');
+('2222222222', 'CORRIENTE', '2024-10-22 15:06:01.816', 1000.00, true, '1'),
+('3333333333', 'AHORROS', '2024-10-22 15:06:01.816', 2000.00, true, '2'),
+('4444444444', 'CORRIENTE', '2024-10-22 15:06:01.816', 3000.00, true, '3'),
+('5555555555', 'AHORROS', '2024-10-22 15:06:01.816', 4000.00, true, '4');
 
 -- Insertar datos en la tabla motions
 INSERT INTO motions (date, transaction_type, valor, saldo, account_id, id_client) VALUES

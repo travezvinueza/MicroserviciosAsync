@@ -3,6 +3,7 @@ package com.ricardotravez.clientepersona.controller;
 import com.ricardotravez.clientepersona.dto.ClientDTO;
 import com.ricardotravez.clientepersona.service.ClientService;
 import io.reactivex.rxjava3.core.Observable;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,7 +16,7 @@ public class ClientController {
     private final ClientService clientService;
 
     @PostMapping("/create")
-    public ResponseEntity <ClientDTO> crear(@RequestBody ClientDTO clientDTO){
+    public ResponseEntity <ClientDTO> crear(@RequestBody @Valid ClientDTO clientDTO){
         return  new ResponseEntity<>(clientService.create(clientDTO), HttpStatus.CREATED) ;
     }
 
