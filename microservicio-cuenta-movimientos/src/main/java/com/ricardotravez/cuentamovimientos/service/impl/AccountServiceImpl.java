@@ -45,7 +45,6 @@ public class AccountServiceImpl implements AccountService {
                     .doOnError(error -> log.error("Error obteniendo cliente: ", error))
                     .onErrorReturnItem(new ClientDTO());
 
-            // Bloquea hasta que se obtiene el cliente y continuará con la lógica
             ClientDTO clientDTO = clienteObservable.blockingFirst();
 
             if (clientDTO.getId() == null) {
@@ -55,7 +54,7 @@ public class AccountServiceImpl implements AccountService {
             Account account = modelMapper.map(accountDTO, Account.class);
             account.setDate(LocalDateTime.now());
             account.setAccountNumber(generateAccountNumber());
-            // Guarda la entidad de cuenta en el repositorio y la mapea de vuelta a DTO
+            // Guarda la entidad de cuenta en el repositorio y l
             return modelMapper.map(accountRepository.save(account), AccountDTO.class);
         } catch (Exception e) {
             throw new ClientNotFoundException("Error: " + e.getMessage());
@@ -152,7 +151,6 @@ public class AccountServiceImpl implements AccountService {
                 throw new ResourceNotFoundException("El cliente no contiene ninguna cuenta asociada");
             }
 
-            // Inicializo la lista para almacenar los reportes de cuentas
             List<AccountReport> accountReports = new ArrayList<>();
 
             accounts.forEach(cuenta -> {
@@ -165,7 +163,6 @@ public class AccountServiceImpl implements AccountService {
                         .toList();
 
                 AccountReport accountReport = modelMapper.map(cuenta, AccountReport.class);
-                // Establecer los detalles del reporte y la información del cliente
                 accountReport.setAccountReportDetail(accountReportDetailDTOS);
                 accountReport.setDate(LocalDate.now());
                 accountReport.setClient(clientDTO);
@@ -174,7 +171,7 @@ public class AccountServiceImpl implements AccountService {
                 accountReports.add(accountReport);
             });
 
-            return accountReports; // Retorna la lista de reportes de cuentas
+            return accountReports;
         } catch (ResourceNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
