@@ -19,7 +19,7 @@ public class ClientApiImpl implements ClientApi {
 
     @Override
     public List<AccountDTO> getCuentaPorClienteId(String clientId) {
-        String url = "http://localhost:8081/api/v1/accounts/getCuentaPorClienteId/" + clientId;
+        String url = "http://cuenta-movimientos:8081/api/v1/accounts/getCuentaPorClienteId/" + clientId;
         ResponseEntity<List<AccountDTO>> responseCuenta = restTemplate.exchange(url, HttpMethod.GET, null,  new ParameterizedTypeReference<>() {});
         if(responseCuenta.getStatusCode().value() == 200) {
             return responseCuenta.getBody();

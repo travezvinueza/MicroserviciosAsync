@@ -90,12 +90,11 @@ public class AccountServiceImpl implements AccountService {
     public AccountDTO update(AccountDTO accountDTO) {
         AccountDTO existingAccount  = getById(accountDTO.getId());
 
-        existingAccount .setDate(LocalDateTime.now());
-        existingAccount .setAccountType(accountDTO.getAccountType());
-        existingAccount .setInitialBalance(accountDTO.getInitialBalance());
-        existingAccount .setState(accountDTO.isState());
-
-        Account account = modelMapper.map(existingAccount , Account.class);
+        existingAccount.setDate(LocalDateTime.now());
+        existingAccount.setAccountType(accountDTO.getAccountType());
+        existingAccount.setInitialBalance(accountDTO.getInitialBalance());
+        existingAccount.setState(accountDTO.isState());
+        Account account = modelMapper.map(existingAccount, Account.class);
 
         return modelMapper.map(accountRepository.save(account), AccountDTO.class);
     }

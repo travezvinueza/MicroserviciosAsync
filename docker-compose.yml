@@ -1,25 +1,6 @@
 version: '3'
 
 services:
-  ### Base de datos para cliente_personas
-  postgres_db:
-    container_name: postgres_db
-    image: postgres:14
-    restart: unless-stopped
-    environment:
-      POSTGRES_DB: cliente
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - 5431:5431
-    expose:
-      - 5431
-    command: -p 5431
-    volumes:
-      - pgdata1:/var/lib/postgresql/data
-    networks:
-      - my_network
-
   ### Base de datos para cuenta_movimientos
   postgres_db_new:
     container_name: postgres_db_new
@@ -47,11 +28,11 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DATABASE_URL=jdbc:postgresql://postgres_db:5431/cliente
+      - DATABASE_URL=jdbc:postgresql://postgres_db_new:5432/movimientos
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=postgres
     depends_on:
-      - postgres_db
+      - postgres_db_new
     networks:
       - my_network
 
@@ -72,7 +53,6 @@ services:
       - my_network
 
 volumes:
-  pgdata1: {}
   pgdata2: {}
 
 networks:
