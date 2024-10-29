@@ -30,7 +30,6 @@ public class MotionServiceImpl implements MotionService {
 
     @Override
     public MotionDTO create(MotionDTO motionDTO) {
-        // Busca la cuenta por el número de cuenta en el repositorio. Si no se encuentra, lanza una excepción.
         Account account = accountRepository.findByAccountNumber(motionDTO.getAccountNumber()).orElseThrow(
                 () -> new AccountNotFoundException(MessageError.CUENTA_NO_ENCONTRADA.toString()));
 
@@ -46,8 +45,6 @@ public class MotionServiceImpl implements MotionService {
             saldoActual = optionalMovimiento.get().getSaldo();
         }
 
-        log.info("Cuenta: {}", account);
-
         if (motion.getTransactionType() == TransactionType.DEPOSITO) {
             motion.setSaldo(saldoActual + motion.getValor());
         } else if (motion.getTransactionType() == TransactionType.RETIRO) {
@@ -57,7 +54,7 @@ public class MotionServiceImpl implements MotionService {
                 motion.setSaldo(saldoActual - motion.getValor());
             }
         }
-        // Guarda el movimiento en el repositorio y mapea la entidad de movimiento a DTO.
+
         Motion savedMotion = motionRepository.save(motion);
         return modelMapper.map(savedMotion, MotionDTO.class);
     }
