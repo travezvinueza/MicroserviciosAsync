@@ -1,0 +1,2 @@
+CREATE DATABASE clientes;
+CREATE DATABASE movimientos;

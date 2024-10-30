@@ -7,7 +7,6 @@ services:
     image: postgres:14
     restart: unless-stopped
     environment:
-      POSTGRES_DB: movimientos
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
     ports:
@@ -17,6 +16,7 @@ services:
     command: -p 5432
     volumes:
       - pgdata2:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
     networks:
       - my_network
 
@@ -28,7 +28,7 @@ services:
     ports:
       - 8080:8080
     environment:
-      - DATABASE_URL=jdbc:postgresql://postgres_db_new:5432/movimientos
+      - DATABASE_URL=jdbc:postgresql://postgres_db_new:5432/clientes
       - DATABASE_USERNAME=postgres
       - DATABASE_PASSWORD=postgres
     depends_on:

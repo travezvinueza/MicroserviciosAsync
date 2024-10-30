@@ -62,10 +62,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private String generateAccountNumber() {
-        long min = 1000000000L;
-        long max = 9999999999L;
-        long accountNumber = min + (long) (random.nextDouble() * (max - min + 1));
-        return String.valueOf(accountNumber);
+        int min = 100000;
+        int max = 999999;
+        String accountNumber;
+        do {
+            accountNumber = String.valueOf(random.nextInt(max - min + 1) + min);
+        } while (accountRepository.findByAccountNumber(accountNumber).isPresent());
+
+        return accountNumber;
     }
 
     @Override
