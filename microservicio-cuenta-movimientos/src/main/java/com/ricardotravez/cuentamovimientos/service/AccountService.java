@@ -1,7 +1,7 @@
 package com.ricardotravez.cuentamovimientos.service;
 
 import com.ricardotravez.cuentamovimientos.dto.AccountDTO;
-import com.ricardotravez.cuentamovimientos.dto.AccountReport;
+import com.ricardotravez.cuentamovimientos.dto.AccountReportDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -16,5 +16,5 @@ public interface AccountService {
     List<AccountDTO> findByIdClient(String idClient);
 
 
-    List<AccountReport> getClientAccountReport(Long idClient, LocalDateTime startDate, LocalDateTime endDate);
+    List<AccountReportDTO> getClientAccountReport(Long idClient, LocalDateTime startDate, LocalDateTime endDate);
 }

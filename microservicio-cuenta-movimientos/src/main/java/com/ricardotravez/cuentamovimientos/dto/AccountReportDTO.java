@@ -12,7 +12,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class AccountReport {
+public class AccountReportDTO {
     private String accountNumber;
     private AccountType accountType;
     private LocalDate date;

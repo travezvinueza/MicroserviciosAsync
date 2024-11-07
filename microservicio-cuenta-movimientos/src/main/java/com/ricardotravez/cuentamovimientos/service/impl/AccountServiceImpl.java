@@ -3,7 +3,7 @@ package com.ricardotravez.cuentamovimientos.service.impl;
 import com.ricardotravez.cuentamovimientos.accountapi.AccountApi;
 import com.ricardotravez.cuentamovimientos.dto.ClientDTO;
 import com.ricardotravez.cuentamovimientos.dto.AccountDTO;
-import com.ricardotravez.cuentamovimientos.dto.AccountReport;
+import com.ricardotravez.cuentamovimientos.dto.AccountReportDTO;
 import com.ricardotravez.cuentamovimientos.dto.AccountReportDetailDTO;
 import com.ricardotravez.cuentamovimientos.dto.MotionDTO;
 import com.ricardotravez.cuentamovimientos.entity.Account;
@@ -62,10 +62,14 @@ public class AccountServiceImpl implements AccountService {
     }
 
     private String generateAccountNumber() {
-        long min = 1000000000L;
-        long max = 9999999999L;
-        long accountNumber = min + (long) (random.nextDouble() * (max - min + 1));
-        return String.valueOf(accountNumber);
+        int min = 100000;
+        int max = 999999;
+        String accountNumber;
+        do {
+            accountNumber = String.valueOf(random.nextInt(max - min + 1) + min);
+        } while (accountRepository.findByAccountNumber(accountNumber).isPresent());
+
+        return accountNumber;
     }
 
     @Override
@@ -127,7 +131,7 @@ public class AccountServiceImpl implements AccountService {
     }
 
     @Override
-    public List<AccountReport> getClientAccountReport(Long idClient, LocalDateTime startDate, LocalDateTime endDate) {
+    public List<AccountReportDTO> getClientAccountReport(Long idClient, LocalDateTime startDate, LocalDateTime endDate) {
         try {
             // Establecer conexion con servicio cliente para obtener datos de cliente
             Observable<ClientDTO> clienteObservable = Observable.fromCallable(() ->
@@ -151,27 +155,27 @@ public class AccountServiceImpl implements AccountService {
                 throw new ResourceNotFoundException("El cliente no contiene ninguna cuenta asociada");
             }
 
-            List<AccountReport> accountReports = new ArrayList<>();
+            List<AccountReportDTO> accountReportDTOS = new ArrayList<>();
 
-            accounts.forEach(cuenta -> {
-                List<AccountReportDetailDTO> accountReportDetailDTOS = cuenta.getMotions().stream()
-                        .map(movimiento -> {
-                            AccountReportDetailDTO detalleDTO = modelMapper.map(movimiento, AccountReportDetailDTO.class);
-                            detalleDTO.setDate(movimiento.getDate().toLocalDate()); // Ajusta la fecha del movimiento
+            accounts.forEach(account -> {
+                List<AccountReportDetailDTO> accountReportDetailDTOS = account.getMotions().stream()
+                        .map(motion -> {
+                            AccountReportDetailDTO detalleDTO = modelMapper.map(motion, AccountReportDetailDTO.class);
+                            detalleDTO.setDate(motion.getDate().toLocalDate()); // Ajusta la fecha del movimiento
                             return detalleDTO;
                         })
                         .toList();
 
-                AccountReport accountReport = modelMapper.map(cuenta, AccountReport.class);
-                accountReport.setAccountReportDetail(accountReportDetailDTOS);
-                accountReport.setDate(LocalDate.now());
-                accountReport.setClient(clientDTO);
+                AccountReportDTO accountReportDTO = modelMapper.map(account, AccountReportDTO.class);
+                accountReportDTO.setAccountReportDetail(accountReportDetailDTOS);
+                accountReportDTO.setDate(LocalDate.now());
+                accountReportDTO.setClient(clientDTO);
 
                 // Añadir el DTO del reporte a la lista de reportes
-                accountReports.add(accountReport);
+                accountReportDTOS.add(accountReportDTO);
             });
 
-            return accountReports;
+            return accountReportDTOS;
         } catch (ResourceNotFoundException ex) {
             throw ex;
         } catch (Exception e) {
