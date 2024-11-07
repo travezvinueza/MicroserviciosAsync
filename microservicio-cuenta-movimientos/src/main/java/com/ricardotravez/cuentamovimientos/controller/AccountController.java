@@ -1,7 +1,7 @@
 package com.ricardotravez.cuentamovimientos.controller;
 
 import com.ricardotravez.cuentamovimientos.dto.AccountDTO;
-import com.ricardotravez.cuentamovimientos.dto.AccountReport;
+import com.ricardotravez.cuentamovimientos.dto.AccountReportDTO;
 import com.ricardotravez.cuentamovimientos.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -49,7 +49,7 @@ public class AccountController {
     }
 
     @GetMapping("/report-account")
-    public ResponseEntity<List<AccountReport>> obtenerEstadoCuentaPorCliente(
+    public ResponseEntity<List<AccountReportDTO>> obtenerEstadoCuentaPorCliente(
             @RequestParam("startDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate startDate,
             @RequestParam("endDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate endDate,
             @RequestParam("idClient") Long idClient
